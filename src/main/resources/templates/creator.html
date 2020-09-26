@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns="http://www.w3.org/1999/xhtml">
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>Pizza Creator</title>
+</head>
+<body>
+<h1>Create your own Pizza</h1>
+<img th:src="@{/images/pizza.jpg}"/>
+
+<h3>Pick sauce</h3>
+<div th:each="ingredient : ${sauce}">
+    <input name="ingredientList" type="checkbox" th:value="${ingredient.id}"/>
+    <span th:text="${ingredient.name}">Ingredient</span><br/>
+</div>
+
+</body>
+</html>
