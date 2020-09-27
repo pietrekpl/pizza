@@ -13,7 +13,9 @@
 <body>
 
 <img th:src="@{/images/pizza.jpg}"/>
+
 <h1>Create your own Pizza</h1>
+
 <form method="post" th:object="${creator}">
     <div class="grid">
 
@@ -45,6 +47,14 @@
                 <span  th:text="${ingredient.name}">Ingredient</span><br/>
             </div>
         </div>
+
+        <div>
+            <h3>Name your own pizza :</h3>
+            <input type="text" placeholder="Name your pizza" th:field="*{name}"/>
+            <br/>
+            <button>Send your order</button>
+        </div>
+
 
 
 
