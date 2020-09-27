@@ -5,6 +5,11 @@
     <meta charset="UTF-8">
     <title>Pizza Creator</title>
 </head>
+<style>
+    div{
+        font-family: verdana;
+    }
+</style>
 <body>
 
 <img th:src="@{/images/pizza.jpg}"/>
@@ -16,7 +21,28 @@
             <h3>Choose sauce:</h3>
             <div th:each="ingredient : ${sauce}">
                 <input name="ingredientList" type="checkbox" th:value="${ingredient.id}"/>
-                <span th:text="${ingredient.name}">Ingredient</span><br/>
+                <span  th:text="${ingredient.name}">Ingredient</span><br/>
+            </div>
+        </div>
+        <div>
+            <h3>Choose meat:</h3>
+            <div th:each="ingredient : ${meat}">
+                <input name="ingredientList" type="checkbox" th:value="${ingredient.id}"/>
+                <span  th:text="${ingredient.name}">Ingredient</span><br/>
+            </div>
+        </div>
+        <div>
+            <h3>Choose vegetables:</h3>
+            <div th:each="ingredient : ${vegetable}">
+                <input name="ingredientList" type="checkbox" th:value="${ingredient.id}"/>
+                <span  th:text="${ingredient.name}">Ingredient</span><br/>
+            </div>
+        </div>
+        <div>
+            <h3>Choose cheese:</h3>
+            <div th:each="ingredient : ${cheese}">
+                <input name="ingredientList" type="checkbox" th:value="${ingredient.id}"/>
+                <span  th:text="${ingredient.name}">Ingredient</span><br/>
             </div>
         </div>
 
