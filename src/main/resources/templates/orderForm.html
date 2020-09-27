@@ -9,13 +9,52 @@
     div{
         font-family: verdana;
     }
+    input{
+    width="40";
+     font-family: verdana;
+    }
+    label{
+     font-family: verdana;
+    }
+
 </style>
 <body>
-    <form method="post" action="/orders" th:object="${order}">
-        <h1>Order your taco</h1>
+<form method="post" action="/orders" th:object="${order}">
+    <h1>Order your pizza</h1>
+    <div th:if="${#fields.hasErrors()}">
+            <span class="validationError">
+            Please correct following errors and try again
+                </span>
+    </div>
+    <h3> Adress for pizza delivery:</h3>
 
+    <label for="name">FirstName and lastName</label>
+    <input type="text" th:field="*{name}" />
+    <br/>
+    <label for="street">Street:</label>
+    <input type="text" th:field="*{street}" />
+    <br/>
+    <label for="city">City:</label>
+    <input type="text" th:field="*{city}" />
+    <br/>
+    <label for="state">State:</label>
+    <input type="text" th:field="*{state}" />
+    <br/>
+    <label for="zipCode">Zip Code:</label>
+    <input type="text" th:field="*{zipCode}" />
+    <br/>
+    <label for="ccNumber">Credit card number</label>
+    <input type="text" th:field="*{ccNumber}" />
+    <br/>
+    <label for="ccExpiration">Credit card expiration date</label>
+    <input type="text" th:field="*{ccExpiration}" />
+    <br/>
+    <label for="ccCVV">CVV code</label>
+    <input type="text" th:field="*{ccCVV}" placeholder="3 digit number at back of credit card" />
+    <br/>
+    <input type="submit" value="Put order"/>
 
-    </form>
+</form>
 
 </body>
 </html>

@@ -7,6 +7,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.stream.Collectors;
@@ -58,5 +59,8 @@ public class PizzaCreatorController {
                 .collect(Collectors.toList());
 
 
+    } @PostMapping
+    public String processCreator(){
+        return "redirect:/orders/current";
     }
 }
