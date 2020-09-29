@@ -9,7 +9,7 @@ import java.util.List;
 @Data
 public class Pizza {
     @NotNull
-    @Size(min = 3, message = "Name should contain at least 3 letters")
+    @Size(min = 2, message = "Name should contain at least 2 letters")
     private String name;
     @Size(min = 1, message = "Please choose at least 1 ingredient")
     private List<String>ingredientList;
