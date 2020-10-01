@@ -1,4 +1,8 @@
 package com.ludynia.pizza.repository;
 
-public interface OrderRepository {
+import com.ludynia.pizza.model.Order;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface OrderRepository extends JpaRepository<Order,Long> {
+
 }
