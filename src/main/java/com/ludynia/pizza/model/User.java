@@ -15,24 +15,24 @@ import java.util.Collection;
 import java.util.logging.Level;
 
 @Entity
-@Data
 @NoArgsConstructor(access =AccessLevel.PRIVATE,force = true)
 @RequiredArgsConstructor
+@Data
 public class User implements UserDetails {
 
     private static final long serialUID = 1L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
-    private String username;
-    private String password;
-    private String fullName;
-    private String city;
-    private String street;
-    private String state;
-    private String zipCode;
-    private String telephoneNumber;
+    final private Long id;
+    final private String username;
+    final private String password;
+    final String fullName;
+    final String city;
+    final String street;
+    final String state;
+    final String zipCode;
+    final String telephoneNumber;
 
 
     @Override
