@@ -24,15 +24,17 @@ public class User implements UserDetails {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    final private Long id;
+     private Long id;
     final private String username;
     final private String password;
-    final String fullName;
-    final String city;
-    final String street;
-    final String state;
-    final String zipCode;
-    final String telephoneNumber;
+    final private String fullName;
+    final private String city;
+    final private String street;
+    final private String state;
+    final private String zipCode;
+    final private String telephoneNumber;
+
+
 
 
     @Override
