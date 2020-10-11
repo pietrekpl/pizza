@@ -27,6 +27,7 @@ public class UserRegistrationController {
     public String registrationForm(){
         return "registration";
     }
+
     @PostMapping
     public String processRegistration(RegistrationForm form){
         userRepository.save(form.toUser(passwordEncoder));

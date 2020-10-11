@@ -33,18 +33,29 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder);
+        auth.userDetailsService(userDetailsService)
+                .passwordEncoder(passwordEncoder);
     }
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.authorizeRequests()
-                .mvcMatchers("/creator").authenticated()
-                .mvcMatchers("/login").permitAll()
-                .mvcMatchers("/h2/**").permitAll()
-                .and().formLogin();
-        http.csrf().disable();
-        http.headers().frameOptions().disable();
+     http.authorizeRequests()
+             .antMatchers("/creator","/orders")
+             .access("hasRole('ROLE_USER')")
+             .antMatchers("/","/**").access("permitAll")
+             .and()
+             .formLogin()
+             .loginPage("/login")
+             .and()
+             .logout()
+             .logoutSuccessUrl("/")
+             .and()
+             .csrf()
+             .ignoringAntMatchers("/h2-console/**")
+             .and()
+             .headers()
+             .frameOptions()
+             .sameOrigin();
     }
 
     /*    @Override
