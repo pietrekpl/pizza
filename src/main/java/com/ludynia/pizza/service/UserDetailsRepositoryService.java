@@ -25,8 +25,5 @@ public class UserDetailsRepositoryService implements UserDetailsService {
         }
         throw new UsernameNotFoundException("User "+ user+ " nor found");
     }
-    @Bean
-    public PasswordEncoder passwordEncoder(){
-        return PasswordEncoderFactories.createDelegatingPasswordEncoder();
-    }
+
 }

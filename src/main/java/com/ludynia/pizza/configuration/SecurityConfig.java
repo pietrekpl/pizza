@@ -24,10 +24,13 @@ import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 
-    private final PasswordEncoder passwordEncoder = PasswordEncoderFactories.createDelegatingPasswordEncoder();
+
+    private final BCryptPasswordEncoder passwordEncoder;
     private final UserDetailsService userDetailsService;
 
-    public SecurityConfig(UserDetailsService userDetailsService) {
+
+    public SecurityConfig(BCryptPasswordEncoder passwordEncoder, UserDetailsService userDetailsService) {
+        this.passwordEncoder = passwordEncoder;
         this.userDetailsService = userDetailsService;
     }
 
@@ -42,7 +45,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
      http.authorizeRequests()
              .antMatchers("/creator","/orders")
              .access("hasRole('ROLE_USER')")
-             .antMatchers("/","/**").access("permitAll")
+             .antMatchers("/","/**","/h2/**").access("permitAll")
              .and()
              .formLogin()
              .loginPage("/login")
@@ -51,7 +54,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
              .logoutSuccessUrl("/")
              .and()
              .csrf()
-             .ignoringAntMatchers("/h2-console/**")
              .and()
              .headers()
              .frameOptions()
