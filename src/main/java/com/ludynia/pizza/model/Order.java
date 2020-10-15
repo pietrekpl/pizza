@@ -40,6 +40,9 @@ public class Order implements Serializable {
     private String ccCVV;
     private Date created;
 
+    @ManyToOne
+    private User user;
+
     @PrePersist
     public void created(){
         this.created = new Date();

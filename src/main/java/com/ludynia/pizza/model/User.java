@@ -17,16 +17,17 @@ import java.util.Collection;
 import java.util.logging.Level;
 
 @Entity
-@NoArgsConstructor(access =AccessLevel.PRIVATE,force = true)
-@RequiredArgsConstructor
 @Data
+@NoArgsConstructor(access = AccessLevel.PRIVATE, force = true)
+@RequiredArgsConstructor
+
 public class User implements UserDetails {
 
     private static final long serialUID = 1L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-     private Long id;
+    private Long id;
     final private String username;
     final private String password;
     final private String fullName;
@@ -35,9 +36,6 @@ public class User implements UserDetails {
     final private String state;
     final private String zipCode;
     final private String telephoneNumber;
-
-
-
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
