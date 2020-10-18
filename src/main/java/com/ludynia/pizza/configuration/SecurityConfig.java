@@ -20,12 +20,23 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 
+    @Override
+    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+        auth.inMemoryAuthentication()
+                .withUser("admin")
+                .password("{noop}password")
+                .roles("Admin");
+    }
 
-
-
-
-
-    
-
-
+    @Override
+    protected void configure(HttpSecurity http) throws Exception {
+        http.authorizeRequests()
+                .antMatchers("/").authenticated()
+                .antMatchers("/creator","/order").permitAll()
+                .and()
+                .httpBasic()
+                .and()
+                .csrf()
+                .disable();
+    }
 }
