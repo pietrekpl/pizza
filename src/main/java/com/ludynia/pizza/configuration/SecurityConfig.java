@@ -19,58 +19,13 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
-    private final BCryptPasswordEncoder passwordEncoder;
-    private final UserDetailsService userDetailsService;
 
 
 
 
 
 
+    
 
 
-
-    public SecurityConfig(BCryptPasswordEncoder passwordEncoder, UserDetailsService userDetailsService) {
-        this.passwordEncoder = passwordEncoder;
-        this.userDetailsService = userDetailsService;
-    }
-
-    @Override
-    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.userDetailsService(userDetailsService)
-                .passwordEncoder(passwordEncoder);
-    }
-
-    @Override
-    protected void configure(HttpSecurity http) throws Exception {
-     http.authorizeRequests()
-             .antMatchers("/creator","/orders")
-             .access("hasRole('ROLE_USER')")
-             .antMatchers("/","/**","/h2/**").access("permitAll")
-             .and()
-             .formLogin()
-             .loginPage("/login")
-             .and()
-             .logout()
-             .logoutSuccessUrl("/")
-             .and()
-             .csrf()
-             .and()
-             .headers()
-             .frameOptions()
-             .sameOrigin();
-    }
-
-    /*    @Override
-    protected void configure(HttpSecurity http) throws Exception {
-        http.httpBasic().disable();
-    }
-
-    @Override
-    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.inMemoryAuthentication()
-                .withUser("admin")
-                .roles("ADMIN")
-                .password("{noop}password");
-    }*/
 }
