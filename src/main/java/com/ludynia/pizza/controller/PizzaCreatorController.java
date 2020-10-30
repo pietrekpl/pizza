@@ -80,6 +80,8 @@ public class PizzaCreatorController {
         if (errors.hasErrors()){
             return "creator";
         }
+        Pizza pizza = pizzaRepository.save(creator);
+        order.addCreator(pizza);
         log.info("Pizza : "+ creator);
         return "redirect:/orders/current";
     }
