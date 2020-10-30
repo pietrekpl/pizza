@@ -2,7 +2,10 @@ package com.ludynia.pizza.controller;
 
 
 import com.ludynia.pizza.model.Ingredient;
+import com.ludynia.pizza.model.Order;
 import com.ludynia.pizza.model.Pizza;
+import com.ludynia.pizza.repository.IngredientRepository;
+import com.ludynia.pizza.repository.PizzaRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -21,6 +24,16 @@ import java.util.List;
 @Controller
 @RequestMapping("/creator")
 public class PizzaCreatorController {
+
+    private PizzaRepository pizzaRepository;
+
+    private IngredientRepository ingredientRepository;
+
+    public PizzaCreatorController(PizzaRepository pizzaRepository, IngredientRepository ingredientRepository) {
+        this.pizzaRepository = pizzaRepository;
+        this.ingredientRepository = ingredientRepository;
+    }
+
 
     @GetMapping
     public String showCreatorForm(Model model) {
@@ -63,7 +76,7 @@ public class PizzaCreatorController {
 
 
     } @PostMapping
-    public String processCreator(@Valid @ModelAttribute("creator") Pizza creator,Model model, Errors errors){
+    public String processCreator(@Valid Pizza creator, @ModelAttribute Order order, Errors errors){
         if (errors.hasErrors()){
             return "creator";
         }
