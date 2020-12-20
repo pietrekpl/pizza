@@ -16,6 +16,9 @@
     label{
      font-family: verdana;
     }
+    .validationError{
+     color:red
+    }
 
 </style>
 <body>
@@ -27,28 +30,36 @@
                 </span>
     </div>
     <h3> Adress for pizza delivery:</h3>
-
-    <label for="name">FirstName and lastName</label>
-    <input type="text" th:field="*{name}" />
     <br/>
+    <p th:if="${#fields.hasErrors('name')}" th:errorClass="validationError" th:errors="*{name}">Field name cant be empty</p>
+    <label for="name">FirstName and lastName</label>
+    <input type="text" th:field="*{name}" th:errorClass="validationError" />
+    <br/>
+    <p th:if="${#fields.hasErrors('street')}" th:errorClass="validationError" th:errors="*{street}">Field name cant be empty</p>
     <label for="street">Street:</label>
     <input type="text" th:field="*{street}" />
     <br/>
+    <p th:if="${#fields.hasErrors('city')}" th:errorClass="validationError" th:errors="*{city}">Field name cant be empty</p>
     <label for="city">City:</label>
     <input type="text" th:field="*{city}" />
     <br/>
+    <p th:if="${#fields.hasErrors('state')}" th:errorClass="validationError" th:errors="*{state}">Field name cant be empty</p>
     <label for="state">State:</label>
     <input type="text" th:field="*{state}" />
     <br/>
+    <p th:if="${#fields.hasErrors('zipCode')}" th:errorClass="validationError" th:errors="*{zipCode}">Field name cant be empty</p>
     <label for="zipCode">Zip Code:</label>
     <input type="text" th:field="*{zipCode}" />
     <br/>
+    <p th:if="${#fields.hasErrors('ccNumber')}" th:errorClass="validationError" th:errors="*{ccNumber}">Field name cant be empty</p>
     <label for="ccNumber">Credit card number</label>
     <input type="text" th:field="*{ccNumber}" />
     <br/>
+    <p th:if="${#fields.hasErrors('ccExpiration')}" th:errorClass="validationError" th:errors="*{ccExpiration}">Field name cant be empty</p>
     <label for="ccExpiration">Credit card expiration date</label>
-    <input type="text" th:field="*{ccExpiration}" />
+    <input type="text" th:field="*{ccExpiration}" placeholder="MM/yy" />
     <br/>
+    <p th:if="${#fields.hasErrors('ccCVV')}" th:errorClass="validationError" th:errors="*{ccCVV}">Field name cant be empty</p>
     <label for="ccCVV">CVV code</label>
     <input type="text" th:field="*{ccCVV}" placeholder="3 digit number at back of credit card" />
     <br/>
